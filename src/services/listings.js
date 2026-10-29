@@ -66,6 +66,22 @@ export const listingsService = {
       .sort(SORTERS[sort] ?? SORTERS.recent)
   },
 
+  getRelated(listing, limit = 4) {
+    const available = listingsService.search().filter((other) => other.id !== listing.id)
+    return {
+      sameCard: available.filter((other) => other.cardId === listing.cardId).slice(0, limit),
+      sameSeller: available.filter((other) => other.userId === listing.userId).slice(0, limit),
+    }
+  },
+
+  close(id, userId) {
+    const listing = repository.findById(id)
+    if (!listing) throw new Error('La publicación ya no existe.')
+    if (listing.userId !== userId) throw new Error('Solo podés dar de baja tus publicaciones.')
+    if (listing.status !== 'disponible') throw new Error('Solo se pueden dar de baja publicaciones disponibles.')
+    return repository.update(id, { status: 'cancelado' })
+  },
+
   getByUser(userId) {
     return repository
       .where((listing) => listing.userId === userId)
