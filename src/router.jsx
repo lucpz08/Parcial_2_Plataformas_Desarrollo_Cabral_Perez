@@ -15,6 +15,7 @@ import { AppLayout } from '@/components/layout/AppLayout/AppLayout'
 import { ROLES } from '@/data/constants'
 import { AlbumPage } from '@/pages/album/AlbumPage/AlbumPage'
 import { CatalogPage } from '@/pages/album/CatalogPage/CatalogPage'
+import { ExplorePage } from '@/pages/explore/ExplorePage/ExplorePage'
 import { LoginPage } from '@/pages/auth/LoginPage/LoginPage'
 import { RegisterPage } from '@/pages/auth/RegisterPage/RegisterPage'
 import { PlaceholderPage } from '@/pages/PlaceholderPage'
@@ -36,10 +37,7 @@ export const router = createBrowserRouter([
     errorElement: <RouteErrorPage />,
     children: [
       { index: true, element: <HomeRedirect /> },
-      {
-        path: 'explorar',
-        element: <PlaceholderPage eyebrow="Mercado" title="Explorar" subtitle="Cartas publicadas por coleccionistas de todo el país" icon={Compass} />,
-      },
+      { path: 'explorar', element: <ExplorePage /> },
       {
         path: 'explorar/:listingId',
         element: <PlaceholderPage eyebrow="Mercado" title="Publicación" icon={Compass} />,

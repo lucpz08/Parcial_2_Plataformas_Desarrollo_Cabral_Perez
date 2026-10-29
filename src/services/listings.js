@@ -5,6 +5,14 @@ import { usersService } from './users'
 
 const repository = createRepository('listings', 'l')
 
+const byRecent = (a, b) => b.createdAt.localeCompare(a.createdAt)
+
+const SORTERS = {
+  recent: byRecent,
+  price_asc: (a, b) => (a.price ?? Infinity) - (b.price ?? Infinity) || byRecent(a, b),
+  price_desc: (a, b) => (b.price ?? -Infinity) - (a.price ?? -Infinity) || byRecent(a, b),
+}
+
 function withRelations(listing) {
   return {
     ...listing,
@@ -24,21 +32,38 @@ export const listingsService = {
     return listing ? withRelations(listing) : null
   },
 
-  search({ query = '', intent = '', province = '', status = 'disponible', minPrice, maxPrice } = {}) {
+  search({
+    query = '',
+    intent = '',
+    province = '',
+    condition = '',
+    status = 'disponible',
+    minPrice = null,
+    maxPrice = null,
+    verifiedOnly = false,
+    sort = 'recent',
+  } = {}) {
     const text = query.trim().toLowerCase()
+    const filtersByPrice = minPrice != null || maxPrice != null
+
     return repository
       .all()
       .map(withRelations)
       .filter(
         (listing) =>
+          listing.card &&
+          listing.seller?.status === 'activo' &&
           (!status || listing.status === status) &&
           (!intent || listing.intent === intent) &&
           (!province || listing.province === province) &&
-          (minPrice == null || (listing.price ?? 0) >= minPrice) &&
-          (maxPrice == null || (listing.price ?? 0) <= maxPrice) &&
-          (!text || listing.card?.name.toLowerCase().includes(text)),
+          (!condition || listing.collectionItem?.condition === condition) &&
+          (!verifiedOnly || listing.collectionItem?.verification === 'verified') &&
+          (!filtersByPrice || listing.price != null) &&
+          (minPrice == null || listing.price >= minPrice) &&
+          (maxPrice == null || listing.price <= maxPrice) &&
+          (!text || listing.card.name.toLowerCase().includes(text) || listing.card.setName.toLowerCase().includes(text)),
       )
-      .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+      .sort(SORTERS[sort] ?? SORTERS.recent)
   },
 
   getByUser(userId) {
