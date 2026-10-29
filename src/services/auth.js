@@ -41,4 +41,31 @@ export const authService = {
     writeSession(user.id, remember)
     return usersService.toPublic(updatedUser)
   },
+
+  async register({ email, password, displayName, username, province, city }) {
+    await wait(700)
+
+    if (usersService.findByEmail(email)) {
+      throw Object.assign(new Error('Ya existe una cuenta con ese email.'), { field: 'email' })
+    }
+    if (usersService.findByUsername(username)) {
+      throw Object.assign(new Error('Ese nombre de usuario ya está en uso.'), { field: 'username' })
+    }
+
+    const user = usersService.create({
+      email: email.trim().toLowerCase(),
+      password,
+      displayName: displayName.trim(),
+      username: username.trim().toLowerCase(),
+      role: 'coleccionista',
+      status: 'activo',
+      province,
+      city: city.trim(),
+      bio: '',
+      avatarUrl: null,
+      lastLoginAt: now(),
+    })
+    writeSession(user.id, true)
+    return usersService.toPublic(user)
+  },
 }

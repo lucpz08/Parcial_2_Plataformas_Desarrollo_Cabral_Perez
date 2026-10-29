@@ -19,14 +19,21 @@ export function AuthProvider({ children }) {
     return loggedUser
   }, [])
 
+  const register = useCallback(async (data) => {
+    const newUser = await authService.register(data)
+    setUserId(newUser.id)
+    return newUser
+  }, [])
+
   const value = useMemo(
     () => ({
       user,
       isAuthenticated: Boolean(user),
       isAdmin: user?.role === 'admin',
       login,
+      register,
     }),
-    [user, login],
+    [user, login, register],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

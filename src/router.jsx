@@ -7,12 +7,12 @@ import {
   MessageCircle,
   ShieldCheck,
   UserCircle,
-  UserPlus,
   Users,
 } from 'lucide-react'
 import { AuthLayout } from '@/components/layout/AuthLayout/AuthLayout'
 import { AppLayout } from '@/components/layout/AppLayout/AppLayout'
 import { LoginPage } from '@/pages/auth/LoginPage/LoginPage'
+import { RegisterPage } from '@/pages/auth/RegisterPage/RegisterPage'
 import { PlaceholderPage } from '@/pages/PlaceholderPage'
 import { NotFoundPage, RouteErrorPage } from '@/pages/NotFoundPage/NotFoundPage'
 import { UiKitPage } from '@/pages/UiKitPage/UiKitPage'
@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
     errorElement: <RouteErrorPage />,
     children: [
       { path: 'login', element: <LoginPage /> },
-      { path: 'registro', element: <PlaceholderPage title="Crear cuenta" icon={UserPlus} /> },
+      { path: 'registro', element: <RegisterPage /> },
     ],
   },
   {
