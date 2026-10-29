@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Library, Plus, ShieldCheck } from 'lucide-react'
+import { Link } from 'react-router'
+import { Library, Plus, Search, ShieldCheck } from 'lucide-react'
 import { CardImage } from '@/components/cards/CardTile/CardTile'
 import { Alert, Button, Chip, Field, Modal, QuantityInput, Select, Textarea } from '@/components/ui'
 import { CONDITION_LABELS, CONDITIONS, LANGUAGES } from '@/data/constants'
@@ -46,6 +47,9 @@ export function AddToAlbumModal({ card, userId, onClose, onAdded }) {
       description="Contanos en qué estado está tu carta."
       footer={
         <>
+          <Button as={Link} to={`/publicar?busco=${card.id}`} variant="ghost" icon={Search} className={styles.wantedLink}>
+            No la tengo, la busco
+          </Button>
           <Button variant="ghost" onClick={onClose}>
             Cancelar
           </Button>

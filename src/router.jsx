@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router'
 import {
   BookOpen,
-  Compass,
   LayoutDashboard,
   MessageCircle,
   ShieldCheck,
@@ -20,6 +19,7 @@ import { ListingDetailPage } from '@/pages/explore/ListingDetailPage/ListingDeta
 import { LoginPage } from '@/pages/auth/LoginPage/LoginPage'
 import { RegisterPage } from '@/pages/auth/RegisterPage/RegisterPage'
 import { PlaceholderPage } from '@/pages/PlaceholderPage'
+import { PublishPage } from '@/pages/publish/PublishPage/PublishPage'
 import { NotFoundPage, RouteErrorPage } from '@/pages/NotFoundPage/NotFoundPage'
 import { UiKitPage } from '@/pages/UiKitPage/UiKitPage'
 
@@ -48,10 +48,7 @@ export const router = createBrowserRouter([
       {
         element: <RequireAuth />,
         children: [
-          {
-            path: 'publicar',
-            element: <PlaceholderPage eyebrow="Mercado" title="Publicar carta" icon={Compass} />,
-          },
+          { path: 'publicar', element: <PublishPage /> },
           { path: 'album', element: <AlbumPage /> },
           { path: 'album/catalogo', element: <CatalogPage /> },
           {

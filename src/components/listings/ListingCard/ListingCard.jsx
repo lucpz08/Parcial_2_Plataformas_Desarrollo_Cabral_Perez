@@ -9,13 +9,15 @@ import { IntentBadge, ListingStatusBadge } from '../ListingBadges'
 import { getListingPriceLabel } from '../listingPrice'
 import styles from './ListingCard.module.css'
 
-export function ListingCard({ listing, isOwn = false, showStatus = false }) {
+export function ListingCard({ listing, isOwn = false, showStatus = false, preview = false }) {
   const { card, seller, collectionItem } = listing
   const price = getListingPriceLabel(listing)
   const verified = collectionItem?.verification === 'verified'
+  const Root = preview ? 'div' : Link
+  const rootProps = preview ? { 'aria-label': 'Vista previa de la publicación' } : { to: `/explorar/${listing.id}` }
 
   return (
-    <Link to={`/explorar/${listing.id}`} className={cx(styles.card, styles[listing.intent])}>
+    <Root {...rootProps} className={cx(styles.card, styles[listing.intent], preview && styles.preview)}>
       <div className={styles.media}>
         <CardImage card={card} />
         <div className={styles.mediaBadges}>
@@ -61,6 +63,6 @@ export function ListingCard({ listing, isOwn = false, showStatus = false }) {
           </div>
         </div>
       </div>
-    </Link>
+    </Root>
   )
 }

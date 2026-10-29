@@ -187,3 +187,7 @@ button:hover .cardAdd {
     margin: 0 auto;
   }
 }
+
+.wantedLink {
+  margin-right: auto;
+}

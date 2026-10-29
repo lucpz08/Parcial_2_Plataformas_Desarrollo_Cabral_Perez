@@ -97,3 +97,7 @@ export const VERIFICATION_STATUSES = {
 }
 
 export const CURRENCY = 'ARS'
+
+export const LISTING_MAX_PRICE = 100000000
+
+export const LISTING_MAX_DESCRIPTION = 500

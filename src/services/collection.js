@@ -15,6 +15,8 @@ function getOpenListing(itemId) {
 export const collectionService = {
   ...repository,
 
+  getOpenListing,
+
   getByUser(userId) {
     return repository
       .where((item) => item.userId === userId)

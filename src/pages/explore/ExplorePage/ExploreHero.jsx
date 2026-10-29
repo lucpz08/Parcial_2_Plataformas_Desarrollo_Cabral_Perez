@@ -28,7 +28,7 @@ export function ExploreHero({ user, stats, featuredCards }) {
         </div>
 
         {user ? (
-          <Button as={Link} to="/album" variant="gold" icon={Plus}>
+          <Button as={Link} to="/publicar" variant="gold" icon={Plus}>
             Publicar una carta
           </Button>
         ) : (

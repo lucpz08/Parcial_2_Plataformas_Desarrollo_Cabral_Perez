@@ -26,7 +26,7 @@ function SidebarPromo({ user, onNavigate }) {
     <div className={styles.promo}>
       <strong>¿Tenés cartas repetidas?</strong>
       <p>Publicalas y encontrá coleccionistas de tu provincia.</p>
-      <Button as={NavLink} to="/album" onClick={onNavigate} variant="gold" size="sm" icon={Plus} fullWidth>
+      <Button as={NavLink} to="/publicar" onClick={onNavigate} variant="gold" size="sm" icon={Plus} fullWidth>
         Publicar carta
       </Button>
     </div>
