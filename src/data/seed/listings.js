@@ -104,4 +104,12 @@ export const listings = [
     createdAt: '2026-09-13T12:00:00.000Z',
     updatedAt: '2026-09-14T12:00:00.000Z',
   }),
+  listing('l14', 'u5', 'base1-1', 'ci16', 'vender', {
+    price: 175000,
+    province: 'Mendoza',
+    status: 'completado',
+    description: 'Alakazam japonés near mint. Envío por correo con folio y toploader.',
+    createdAt: '2026-10-15T13:00:00.000Z',
+    updatedAt: '2026-10-24T19:30:00.000Z',
+  }),
 ]

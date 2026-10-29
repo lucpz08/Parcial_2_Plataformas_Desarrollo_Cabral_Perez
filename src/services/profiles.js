@@ -40,6 +40,7 @@ export const profilesService = {
         ...review,
         reviewer: usersService.toPublic(usersService.findById(review.reviewerId)),
         card: listing ? cardsService.findById(listing.cardId) : null,
+        revieweeRole: listing ? (listing.userId === userId ? 'seller' : 'buyer') : null,
       }
     })
 

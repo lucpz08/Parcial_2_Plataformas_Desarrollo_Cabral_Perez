@@ -115,7 +115,18 @@ export function ReviewsTab({ reviews, rating, firstName, isOwn }) {
               </div>
             </header>
             {review.comment && <p>{review.comment}</p>}
-            {review.card && <span className={styles.reviewCard}>Por {review.card.name}</span>}
+            {review.tags?.length > 0 && (
+              <ul className={styles.reviewTags}>
+                {review.tags.map((tag) => (
+                  <li key={tag}>{tag}</li>
+                ))}
+              </ul>
+            )}
+            {review.card && (
+              <span className={styles.reviewCard}>
+                {review.revieweeRole === 'seller' ? 'Como vendedor' : 'Como comprador'} · {review.card.name}
+              </span>
+            )}
           </li>
         ))}
       </ul>

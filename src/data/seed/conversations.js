@@ -31,4 +31,12 @@ export const conversations = [
     lastMessageAt: '2026-10-28T10:05:00.000Z',
     createdAt: '2026-10-28T09:50:00.000Z',
   },
+  {
+    id: 'cv5',
+    participants: ['u2', 'u5'],
+    listingId: 'l14',
+    claimId: 'cl4',
+    lastMessageAt: '2026-10-24T19:35:00.000Z',
+    createdAt: '2026-10-16T21:00:00.000Z',
+  },
 ]

@@ -105,3 +105,22 @@ export const LISTING_MAX_DESCRIPTION = 500
 export const MESSAGE_MAX_LENGTH = 1000
 
 export const PROFILE_BIO_MAX_LENGTH = 280
+
+export const REVIEW_COMMENT_MAX_LENGTH = 500
+
+export const RATING_LABELS = {
+  1: 'Muy mala',
+  2: 'Mala',
+  3: 'Regular',
+  4: 'Buena',
+  5: 'Excelente',
+}
+
+export const REVIEW_TAGS = [
+  'Carta como se describió',
+  'Buena comunicación',
+  'Envío rápido',
+  'Pago al instante',
+  'Embalaje cuidado',
+  'Puntual en el encuentro',
+]

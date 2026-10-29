@@ -19,4 +19,10 @@ export const messages = [
 
   message('m12', 'cv4', 'u2', 'Hola Nico, ¿aceptás algo de cambio por el Charizard?', '2026-10-28T09:50:00.000Z'),
   message('m13', 'cv4', 'u4', 'Solo venta por ahora, pero escucho ofertas 😄', '2026-10-28T10:05:00.000Z', null),
+
+  message('m14', 'cv5', 'u2', '¡Hola! Acabo de reservar tu Alakazam. ¿Cómo coordinamos el pago y la entrega?', '2026-10-16T21:00:00.000Z'),
+  message('m15', 'cv5', 'u5', '¡Hola Matías! Te paso el alias por acá y lo despacho apenas se acredite.', '2026-10-16T21:12:00.000Z'),
+  message('m16', 'cv5', 'u2', 'Listo, transferido 🙌', '2026-10-16T21:30:00.000Z'),
+  message('m17', 'cv5', 'u2', '¡Me llegó hoy, impecable! Gracias Flor.', '2026-10-24T19:20:00.000Z'),
+  message('m18', 'cv5', 'u5', '¡Qué bueno! Ya la marqué como completada. ¡Gracias a vos!', '2026-10-24T19:35:00.000Z'),
 ]

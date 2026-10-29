@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import { CheckCircle2, LogIn, MessageCircle, Pencil, Trash2, Unlock, XCircle } from 'lucide-react'
+import { ReviewModal } from '@/components/reviews/ReviewModal/ReviewModal'
+import { ReviewPrompt } from '@/components/reviews/ReviewPrompt/ReviewPrompt'
 import { Alert, Avatar, Button, ConfirmDialog, StarRating } from '@/components/ui'
 import { useToast } from '@/hooks/useToast'
 import { chatsService } from '@/services/chats'
 import { claimsService } from '@/services/claims'
+import { feedbackService } from '@/services/feedback'
 import { listingsService } from '@/services/listings'
 import { formatDate, formatRelative } from '@/utils/format'
 import { CLAIM_COPY } from './claimCopy'
@@ -15,6 +18,7 @@ export function ListingActions({ listing, activeClaim, claimant, lastClaim, role
   const location = useLocation()
   const toast = useToast()
   const [pending, setPending] = useState(null)
+  const [reviewOpen, setReviewOpen] = useState(false)
   const copy = CLAIM_COPY[listing.intent]
   const sellerName = listing.seller.displayName
 
@@ -59,7 +63,10 @@ export function ListingActions({ listing, activeClaim, claimant, lastClaim, role
       title: '¿Marcar como completada?',
       message: 'Confirmá solo si ya se concretó el pago o el intercambio. La publicación se cierra definitivamente.',
       confirmLabel: 'Marcar completada',
-      onConfirm: () => run(() => claimsService.complete(activeClaim.id, user.id), '¡Transacción completada!'),
+      onConfirm: () => {
+        run(() => claimsService.complete(activeClaim.id, user.id), '¡Transacción completada!')
+        setReviewOpen(true)
+      },
     },
     close: {
       title: '¿Dar de baja la publicación?',
@@ -73,9 +80,12 @@ export function ListingActions({ listing, activeClaim, claimant, lastClaim, role
   function renderClosed() {
     if (listing.status === 'completado') {
       return (
-        <Alert tone="success" title="Transacción completada">
-          {lastClaim?.closedAt ? `Se concretó el ${formatDate(lastClaim.closedAt)}.` : 'Esta publicación ya se concretó.'}
-        </Alert>
+        <>
+          <Alert tone="success" title="Transacción completada">
+            {lastClaim?.closedAt ? `Se concretó el ${formatDate(lastClaim.closedAt)}.` : 'Esta publicación ya se concretó.'}
+          </Alert>
+          <ReviewPrompt context={reviewContext} onReview={() => setReviewOpen(true)} />
+        </>
       )
     }
     return (
@@ -192,11 +202,17 @@ export function ListingActions({ listing, activeClaim, claimant, lastClaim, role
   const isClosed = listing.status === 'completado' || listing.status === 'cancelado'
   const renderers = { guest: renderGuest, owner: renderOwner, claimant: renderClaimant, visitor: renderVisitor }
   const dialog = pending ? dialogs[pending] : null
+  const reviewContext = user && lastClaim ? feedbackService.getForClaim(lastClaim.id, user.id) : null
 
   return (
     <section className={styles.actions} aria-label="Acciones">
       {isClosed ? renderClosed() : renderers[role]()}
       <ConfirmDialog open={Boolean(dialog)} onClose={() => setPending(null)} {...dialog} />
+      <ReviewModal
+        context={reviewOpen && reviewContext && !reviewContext.myReview ? reviewContext : null}
+        userId={user?.id}
+        onClose={() => setReviewOpen(false)}
+      />
     </section>
   )
 }

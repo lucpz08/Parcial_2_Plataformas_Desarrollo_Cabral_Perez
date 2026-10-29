@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router'
 import { Handshake, Layers, Library, Star, UserX } from 'lucide-react'
+import { PendingReviews } from '@/components/reviews/PendingReviews/PendingReviews'
 import { Alert, Button, EmptyState, StatCard, Tabs } from '@/components/ui'
 import { useAuth } from '@/hooks/useAuth'
 import { useDatabase } from '@/hooks/useDatabase'
@@ -73,6 +74,8 @@ function ProfileContent({ profile, isOwn, canSeeAll, viewer }) {
             <StatCard icon={Layers} label="Publicaciones" value={stats.activeListings} hint="Activas" />
             <StatCard icon={Library} label="Cartas" value={stats.cards} hint="En su álbum" />
           </div>
+
+          {isOwn && <PendingReviews userId={user.id} />}
 
           <Tabs tabs={tabs} value={tab} onChange={setTab} />
 

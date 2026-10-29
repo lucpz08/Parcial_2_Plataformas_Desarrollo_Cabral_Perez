@@ -39,4 +39,15 @@ export const reviews = [
     comment: 'Muy buena onda, todo claro desde el principio.',
     createdAt: '2026-09-20T17:00:00.000Z',
   },
+  {
+    id: 'r5',
+    listingId: 'l14',
+    claimId: 'cl4',
+    reviewerId: 'u5',
+    revieweeId: 'u2',
+    rating: 5,
+    tags: ['Pago al instante', 'Buena comunicación'],
+    comment: 'Transfirió en minutos y respondió todo rápido. ¡Un placer!',
+    createdAt: '2026-10-24T20:00:00.000Z',
+  },
 ]

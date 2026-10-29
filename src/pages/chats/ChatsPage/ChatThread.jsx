@@ -1,9 +1,12 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router'
 import { ArrowLeft, Check, CheckCheck, MessageSquareOff, ShieldAlert } from 'lucide-react'
+import { ReviewModal } from '@/components/reviews/ReviewModal/ReviewModal'
+import { ReviewPrompt } from '@/components/reviews/ReviewPrompt/ReviewPrompt'
 import { Alert, Avatar, Badge, Button, EmptyState, StarRating } from '@/components/ui'
 import { useToast } from '@/hooks/useToast'
 import { chatsService } from '@/services/chats'
+import { feedbackService } from '@/services/feedback'
 import { cx } from '@/utils/cx'
 import { formatTime } from '@/utils/format'
 import { groupMessagesByDay } from './chatUtils'
@@ -14,6 +17,7 @@ import styles from './ChatsPage.module.css'
 export function ChatThread({ conversationId, user }) {
   const toast = useToast()
   const scrollRef = useRef(null)
+  const [reviewOpen, setReviewOpen] = useState(false)
   const conversation = chatsService.getDetailedForUser(conversationId, user.id)
   const messages = conversation ? chatsService.getMessages(conversationId) : []
   const unread = messages.filter((message) => message.senderId !== user.id && !message.readAt).length
@@ -44,6 +48,7 @@ export function ChatThread({ conversationId, user }) {
 
   const { peer, listing } = conversation
   const peerSuspended = peer.status !== 'activo'
+  const reviewContext = conversation.claimId ? feedbackService.getForClaim(conversation.claimId, user.id) : null
 
   function handleSend(text) {
     try {
@@ -78,6 +83,14 @@ export function ChatThread({ conversationId, user }) {
       </header>
 
       <ListingContext listing={listing} userId={user.id} />
+      {reviewContext && !reviewContext.myReview && (
+        <ReviewPrompt context={reviewContext} onReview={() => setReviewOpen(true)} compact />
+      )}
+      <ReviewModal
+        context={reviewOpen && reviewContext && !reviewContext.myReview ? reviewContext : null}
+        userId={user.id}
+        onClose={() => setReviewOpen(false)}
+      />
 
       <div className={styles.messages} ref={scrollRef} aria-live="polite">
         {messages.length === 0 && (
