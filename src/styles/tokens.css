@@ -24,6 +24,11 @@
   --intent-vender: #5b3de8;
   --intent-cambiar: #12b886;
   --intent-busco: #e8a93d;
+  --chart-vender: #5b3de8;
+  --chart-cambiar: #0c8f67;
+  --chart-busco: #b97d12;
+  --chart-sequential: #5b3de8;
+  --chart-grid: #ecebf3;
 
   --status-disponible: #12b886;
   --status-reservado: #e8a93d;
@@ -85,6 +90,11 @@
 }
 
 :root[data-theme='dark'] {
+  --chart-vender: #9580f2;
+  --chart-cambiar: #0fa476;
+  --chart-busco: #c08520;
+  --chart-sequential: #9580f2;
+  --chart-grid: #2c2842;
   --color-bg: #13111f;
   --color-surface: #1d1a2e;
   --color-surface-alt: #262239;

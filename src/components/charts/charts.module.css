@@ -1,0 +1,311 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  min-width: 0;
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.cardHeader h2 {
+  font-size: var(--text-lg);
+}
+
+.cardHeader p {
+  margin-top: 2px;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.viewToggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+.viewToggle:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.table th,
+.table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.table th {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.table td:not(:first-child),
+.table th:not(:first-child) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  z-index: 2;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--color-text);
+  color: var(--color-surface);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 4px);
+  transition:
+    opacity var(--duration-fast),
+    transform var(--duration-fast);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.columnPlot {
+  position: relative;
+  height: 200px;
+  margin: 16px 0 0 32px;
+}
+
+.columnGrid span {
+  position: absolute;
+  right: 0;
+  left: 0;
+  border-top: 1px solid var(--chart-grid);
+}
+
+.columnGrid em {
+  position: absolute;
+  right: calc(100% + 8px);
+  font-size: 11px;
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+  transform: translateY(-50%);
+}
+
+.columnBars {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  gap: 2px;
+}
+
+.columnSlot {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  justify-content: center;
+  border-radius: 6px;
+  outline: none;
+}
+
+.columnSlot:hover,
+.columnSlot:focus-visible {
+  background: color-mix(in srgb, var(--chart-sequential) 8%, transparent);
+}
+
+.columnSlot:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+.columnBar {
+  position: relative;
+  width: min(24px, 70%);
+  border-radius: 4px 4px 0 0;
+  background: var(--chart-sequential);
+  transition: height 500ms var(--ease-out);
+}
+
+.columnValue {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+  transform: translateX(-50%);
+}
+
+.columnSlot:hover .tooltip,
+.columnSlot:focus-visible .tooltip,
+.stackedSegment:hover .tooltip,
+.stackedSegment:focus-visible .tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.columnLabels {
+  display: flex;
+  gap: 2px;
+  margin-left: 32px;
+}
+
+.columnLabels span {
+  flex: 1;
+  font-size: 11px;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.stacked {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.stackedTrack {
+  display: flex;
+  gap: 2px;
+  height: 24px;
+}
+
+.stackedSegment {
+  position: relative;
+  min-width: 8px;
+  background: var(--segment-color);
+  outline: none;
+}
+
+.stackedSegment:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.stackedSegment:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.stackedSegment:only-child {
+  border-radius: 4px;
+}
+
+.stackedSegment:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+.stackedEmpty {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  background: var(--chart-grid);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legend li {
+  display: grid;
+  grid-template-columns: 12px 1fr auto 44px;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--text-sm);
+}
+
+.swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.legendLabel {
+  color: var(--color-text);
+}
+
+.legend strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.legendShare {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}
+
+.barList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.barRow {
+  display: grid;
+  grid-template-columns: 110px 1fr 32px;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--text-sm);
+}
+
+.barLabel {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.barTrack {
+  height: 12px;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  min-width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: var(--chart-sequential);
+  transition: width 500ms var(--ease-out);
+}
+
+.barValue {
+  font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}

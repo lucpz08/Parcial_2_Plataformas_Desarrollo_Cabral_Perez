@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router'
 import {
   BookOpen,
-  LayoutDashboard,
   ShieldCheck,
   Users,
 } from 'lucide-react'
@@ -10,6 +9,7 @@ import { RequireAuth } from '@/components/auth/RequireAuth'
 import { AuthLayout } from '@/components/layout/AuthLayout/AuthLayout'
 import { AppLayout } from '@/components/layout/AppLayout/AppLayout'
 import { ROLES } from '@/data/constants'
+import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage/AdminDashboardPage'
 import { AlbumPage } from '@/pages/album/AlbumPage/AlbumPage'
 import { CatalogPage } from '@/pages/album/CatalogPage/CatalogPage'
 import { ChatsPage } from '@/pages/chats/ChatsPage/ChatsPage'
@@ -58,10 +58,7 @@ export const router = createBrowserRouter([
         path: 'admin',
         element: <RequireAuth roles={[ROLES.ADMIN]} />,
         children: [
-          {
-            index: true,
-            element: <PlaceholderPage eyebrow="Administración" title="Dashboard" subtitle="Métricas generales de la plataforma" icon={LayoutDashboard} />,
-          },
+          { index: true, element: <AdminDashboardPage /> },
           {
             path: 'usuarios',
             element: <PlaceholderPage eyebrow="Administración" title="Gestión de usuarios" icon={Users} />,
