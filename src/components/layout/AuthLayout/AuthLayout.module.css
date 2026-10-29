@@ -1,0 +1,123 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(420px, 5fr) 6fr;
+  min-height: 100vh;
+}
+
+.brand {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  padding: var(--space-xl) var(--space-2xl);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(242, 200, 104, 0.25), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(139, 106, 240, 0.6), transparent 45%),
+    var(--gradient-card-back);
+  color: #ffffff;
+}
+
+.showcase {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 320px;
+}
+
+.showcaseCard {
+  position: absolute;
+  width: 190px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(10, 5, 40, 0.45);
+  transform: translateX(calc(var(--index) * 120px)) translateY(calc(var(--index) * var(--index) * 22px))
+    rotate(calc(var(--index) * 12deg));
+  transition: transform 400ms var(--ease-out);
+  animation: deal 700ms var(--ease-out) backwards;
+  animation-delay: calc((var(--index) + 1) * 120ms);
+}
+
+.showcaseCard:nth-child(2) {
+  z-index: 1;
+}
+
+.showcase:hover .showcaseCard {
+  transform: translateX(calc(var(--index) * 150px)) translateY(calc(var(--index) * var(--index) * 30px - 10px))
+    rotate(calc(var(--index) * 16deg));
+}
+
+.copy h2 {
+  max-width: 380px;
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-extrabold);
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: var(--space-lg) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.highlights li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.92;
+}
+
+.highlightIcon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #f2c868;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.formWrapper {
+  width: 100%;
+  max-width: 420px;
+  animation: slide-up var(--duration-normal) var(--ease-out);
+}
+
+.mobileLogo {
+  display: none;
+}
+
+@keyframes deal {
+  from {
+    opacity: 0;
+    transform: translateY(80px) rotate(0deg);
+  }
+}
+
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .brand {
+    display: none;
+  }
+
+  .mobileLogo {
+    display: block;
+    margin-bottom: var(--space-xl);
+  }
+}

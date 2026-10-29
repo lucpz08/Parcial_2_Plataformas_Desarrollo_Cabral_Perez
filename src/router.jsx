@@ -4,28 +4,27 @@ import {
   Compass,
   LayoutDashboard,
   Library,
-  LogIn,
   MessageCircle,
   ShieldCheck,
   UserCircle,
   UserPlus,
   Users,
 } from 'lucide-react'
+import { AuthLayout } from '@/components/layout/AuthLayout/AuthLayout'
 import { AppLayout } from '@/components/layout/AppLayout/AppLayout'
+import { LoginPage } from '@/pages/auth/LoginPage/LoginPage'
 import { PlaceholderPage } from '@/pages/PlaceholderPage'
 import { NotFoundPage, RouteErrorPage } from '@/pages/NotFoundPage/NotFoundPage'
 import { UiKitPage } from '@/pages/UiKitPage/UiKitPage'
 
 export const router = createBrowserRouter([
   {
-    path: '/login',
-    element: <PlaceholderPage title="Iniciar sesión" icon={LogIn} />,
+    element: <AuthLayout />,
     errorElement: <RouteErrorPage />,
-  },
-  {
-    path: '/registro',
-    element: <PlaceholderPage title="Crear cuenta" icon={UserPlus} />,
-    errorElement: <RouteErrorPage />,
+    children: [
+      { path: 'login', element: <LoginPage /> },
+      { path: 'registro', element: <PlaceholderPage title="Crear cuenta" icon={UserPlus} /> },
+    ],
   },
   {
     path: '/',

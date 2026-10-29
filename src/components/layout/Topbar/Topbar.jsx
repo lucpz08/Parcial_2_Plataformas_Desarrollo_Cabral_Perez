@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { Bell, LogIn, Menu, Search } from 'lucide-react'
-import { Button } from '@/components/ui'
+import { Avatar, Button } from '@/components/ui'
+import { ROLE_LABELS } from '@/data/constants'
+import { useAuth } from '@/hooks/useAuth'
 import styles from './Topbar.module.css'
 
 export function Topbar({ onMenuClick }) {
   const navigate = useNavigate()
+  const { user } = useAuth()
   const [query, setQuery] = useState('')
 
   function handleSearch(event) {
@@ -36,9 +39,19 @@ export function Topbar({ onMenuClick }) {
         <button type="button" className={styles.iconButton} aria-label="Notificaciones">
           <Bell size={20} />
         </button>
-        <Button as={Link} to="/login" variant="secondary" icon={LogIn}>
-          Ingresar
-        </Button>
+        {user ? (
+          <div className={styles.user}>
+            <Avatar name={user.displayName} size={38} />
+            <span className={styles.userInfo}>
+              <strong>{user.displayName}</strong>
+              <span>{ROLE_LABELS[user.role]}</span>
+            </span>
+          </div>
+        ) : (
+          <Button as={Link} to="/login" variant="secondary" icon={LogIn}>
+            Ingresar
+          </Button>
+        )}
       </div>
     </header>
   )

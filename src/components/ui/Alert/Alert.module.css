@@ -1,0 +1,46 @@
+.alert {
+  --tone: var(--color-primary);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px var(--space-md);
+  border: 1px solid color-mix(in srgb, var(--tone) 30%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--tone) 9%, var(--color-surface));
+  font-size: var(--text-sm);
+  animation: slide-up var(--duration-normal) var(--ease-out);
+}
+
+.info {
+  --tone: var(--color-primary);
+}
+
+.success {
+  --tone: var(--color-accent);
+}
+
+.warning {
+  --tone: var(--color-warning);
+}
+
+.danger {
+  --tone: var(--color-danger);
+}
+
+.icon {
+  flex-shrink: 0;
+  color: var(--tone);
+}
+
+.title {
+  display: block;
+  color: var(--color-text);
+}
+
+.body {
+  color: var(--color-text-muted);
+}
+
+.title + .body {
+  margin-top: 2px;
+}
