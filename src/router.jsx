@@ -3,7 +3,6 @@ import {
   BookOpen,
   Compass,
   LayoutDashboard,
-  Library,
   MessageCircle,
   ShieldCheck,
   UserCircle,
@@ -15,6 +14,7 @@ import { AuthLayout } from '@/components/layout/AuthLayout/AuthLayout'
 import { AppLayout } from '@/components/layout/AppLayout/AppLayout'
 import { ROLES } from '@/data/constants'
 import { AlbumPage } from '@/pages/album/AlbumPage/AlbumPage'
+import { CatalogPage } from '@/pages/album/CatalogPage/CatalogPage'
 import { LoginPage } from '@/pages/auth/LoginPage/LoginPage'
 import { RegisterPage } from '@/pages/auth/RegisterPage/RegisterPage'
 import { PlaceholderPage } from '@/pages/PlaceholderPage'
@@ -57,10 +57,7 @@ export const router = createBrowserRouter([
             element: <PlaceholderPage eyebrow="Mercado" title="Publicar carta" icon={Compass} />,
           },
           { path: 'album', element: <AlbumPage /> },
-          {
-            path: 'album/catalogo',
-            element: <PlaceholderPage eyebrow="Colección" title="Catálogo de cartas" icon={Library} />,
-          },
+          { path: 'album/catalogo', element: <CatalogPage /> },
           {
             path: 'chats',
             element: <PlaceholderPage eyebrow="Mensajes" title="Chats" icon={MessageCircle} />,

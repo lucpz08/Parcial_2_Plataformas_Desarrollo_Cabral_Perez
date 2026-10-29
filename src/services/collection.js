@@ -36,6 +36,50 @@ export const collectionService = {
     }
   },
 
+  findDuplicate({ userId, cardId, condition, language }) {
+    return (
+      repository
+        .all()
+        .find(
+          (item) =>
+            item.userId === userId &&
+            item.cardId === cardId &&
+            item.condition === condition &&
+            item.language === language,
+        ) ?? null
+    )
+  },
+
+  addCard({ userId, cardId, condition, language, quantity, notes, requestVerification }) {
+    const duplicate = collectionService.findDuplicate({ userId, cardId, condition, language })
+    const verificationChanges = requestVerification
+      ? { verification: 'pending', verificationRequestedAt: new Date().toISOString() }
+      : {}
+
+    if (duplicate) {
+      const shouldVerify = requestVerification && ['none', 'rejected'].includes(duplicate.verification)
+      const item = repository.update(duplicate.id, {
+        quantity: duplicate.quantity + quantity,
+        notes: notes.trim() || duplicate.notes,
+        ...(shouldVerify ? verificationChanges : {}),
+      })
+      return { item, merged: true }
+    }
+
+    const item = repository.create({
+      userId,
+      cardId,
+      quantity,
+      condition,
+      language,
+      notes: notes.trim(),
+      photoUrl: null,
+      verification: 'none',
+      ...verificationChanges,
+    })
+    return { item, merged: false }
+  },
+
   requestVerification(id) {
     return repository.update(id, { verification: 'pending', verificationRequestedAt: new Date().toISOString() })
   },
