@@ -8,19 +8,25 @@ import {
   UserCircle,
   Users,
 } from 'lucide-react'
+import { ROLES } from '@/data/constants'
 
 export const NAVIGATION = [
   {
-    title: 'Coleccionista',
+    title: 'Mercado',
+    items: [{ to: '/explorar', label: 'Explorar', icon: Compass }],
+  },
+  {
+    title: 'Mi colección',
+    roles: [ROLES.COLECCIONISTA],
     items: [
-      { to: '/explorar', label: 'Explorar', icon: Compass },
       { to: '/album', label: 'Mi álbum', icon: Library },
-      { to: '/chats', label: 'Chats', icon: MessageCircle },
+      { to: '/chats', label: 'Chats', icon: MessageCircle, badge: 'unreadMessages' },
       { to: '/perfil', label: 'Mi perfil', icon: UserCircle },
     ],
   },
   {
     title: 'Administración',
+    roles: [ROLES.ADMIN],
     items: [
       { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true },
       { to: '/admin/usuarios', label: 'Usuarios', icon: Users },
@@ -29,3 +35,7 @@ export const NAVIGATION = [
     ],
   },
 ]
+
+export function getNavigationFor(user) {
+  return NAVIGATION.filter((group) => !group.roles || (user && group.roles.includes(user.role)))
+}

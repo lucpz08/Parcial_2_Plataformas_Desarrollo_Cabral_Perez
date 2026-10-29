@@ -1,24 +1,60 @@
 import { NavLink } from 'react-router'
-import { Plus } from 'lucide-react'
+import { Plus, UserPlus } from 'lucide-react'
 import { Button } from '@/components/ui'
+import { useAuth } from '@/hooks/useAuth'
+import { useDatabase } from '@/hooks/useDatabase'
+import { chatsService } from '@/services/chats'
 import { cx } from '@/utils/cx'
 import { Logo } from '../Logo/Logo'
-import { NAVIGATION } from './navigation'
+import { getNavigationFor } from './navigation'
 import styles from './Sidebar.module.css'
 
+function SidebarPromo({ user, onNavigate }) {
+  if (user?.role === 'admin') return null
+
+  if (!user) {
+    return (
+      <div className={styles.promo}>
+        <strong>Sumate a Riolup</strong>
+        <p>Creá tu cuenta para armar tu álbum y publicar cartas.</p>
+        <Button as={NavLink} to="/registro" onClick={onNavigate} variant="gold" size="sm" icon={UserPlus} fullWidth>
+          Crear cuenta
+        </Button>
+      </div>
+    )
+  }
+
+  return (
+    <div className={styles.promo}>
+      <strong>¿Tenés cartas repetidas?</strong>
+      <p>Publicalas y encontrá coleccionistas de tu provincia.</p>
+      <Button as={NavLink} to="/album" onClick={onNavigate} variant="gold" size="sm" icon={Plus} fullWidth>
+        Publicar carta
+      </Button>
+    </div>
+  )
+}
+
 export function Sidebar({ open, onNavigate }) {
+  const { user } = useAuth()
+  useDatabase()
+
+  const badges = {
+    unreadMessages: user ? chatsService.getUnreadCount(user.id) : 0,
+  }
+
   return (
     <aside className={cx(styles.sidebar, open && styles.open)} aria-label="Navegación principal">
       <div className={styles.brand}>
-        <Logo to="/explorar" />
+        <Logo to="/" />
       </div>
 
       <nav className={styles.nav}>
-        {NAVIGATION.map((group) => (
+        {getNavigationFor(user).map((group) => (
           <div key={group.title} className={styles.group}>
             <span className={styles.groupTitle}>{group.title}</span>
             <ul className={styles.list}>
-              {group.items.map(({ to, label, icon: Icon, end }) => (
+              {group.items.map(({ to, label, icon: Icon, end, badge }) => (
                 <li key={to}>
                   <NavLink
                     to={to}
@@ -28,6 +64,11 @@ export function Sidebar({ open, onNavigate }) {
                   >
                     <Icon size={20} />
                     <span>{label}</span>
+                    {badge && badges[badge] > 0 && (
+                      <span className={styles.badge} aria-label={`${badges[badge]} sin leer`}>
+                        {badges[badge]}
+                      </span>
+                    )}
                   </NavLink>
                 </li>
               ))}
@@ -37,13 +78,7 @@ export function Sidebar({ open, onNavigate }) {
       </nav>
 
       <div className={styles.footer}>
-        <div className={styles.promo}>
-          <strong>¿Tenés cartas repetidas?</strong>
-          <p>Publicalas y encontrá coleccionistas de tu provincia.</p>
-          <Button as={NavLink} to="/album" onClick={onNavigate} variant="gold" size="sm" icon={Plus} fullWidth>
-            Publicar carta
-          </Button>
-        </div>
+        <SidebarPromo user={user} onNavigate={onNavigate} />
       </div>
     </aside>
   )

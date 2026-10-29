@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { Bell, LogIn, Menu, Search } from 'lucide-react'
-import { Avatar, Button } from '@/components/ui'
-import { ROLE_LABELS } from '@/data/constants'
+import { Bell, LogIn, Menu, Search, UserPlus } from 'lucide-react'
+import { Button } from '@/components/ui'
 import { useAuth } from '@/hooks/useAuth'
+import { UserMenu } from '../UserMenu/UserMenu'
 import styles from './Topbar.module.css'
 
 export function Topbar({ onMenuClick }) {
@@ -36,21 +36,22 @@ export function Topbar({ onMenuClick }) {
       </form>
 
       <div className={styles.actions}>
-        <button type="button" className={styles.iconButton} aria-label="Notificaciones">
-          <Bell size={20} />
-        </button>
         {user ? (
-          <div className={styles.user}>
-            <Avatar name={user.displayName} size={38} />
-            <span className={styles.userInfo}>
-              <strong>{user.displayName}</strong>
-              <span>{ROLE_LABELS[user.role]}</span>
-            </span>
-          </div>
+          <>
+            <button type="button" className={styles.iconButton} aria-label="Notificaciones">
+              <Bell size={20} />
+            </button>
+            <UserMenu />
+          </>
         ) : (
-          <Button as={Link} to="/login" variant="secondary" icon={LogIn}>
-            Ingresar
-          </Button>
+          <>
+            <Button as={Link} to="/login" variant="ghost" icon={LogIn}>
+              Ingresar
+            </Button>
+            <Button as={Link} to="/registro" icon={UserPlus} className={styles.registerButton}>
+              Crear cuenta
+            </Button>
+          </>
         )}
       </div>
     </header>

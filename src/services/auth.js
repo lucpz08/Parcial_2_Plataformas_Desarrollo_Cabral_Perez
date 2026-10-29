@@ -26,6 +26,15 @@ export const authService = {
     return readSession(localStorage) ?? readSession(sessionStorage)
   },
 
+  logout() {
+    try {
+      localStorage.removeItem(SESSION_KEY)
+      sessionStorage.removeItem(SESSION_KEY)
+    } catch {
+      return
+    }
+  },
+
   async login(email, password, remember = true) {
     await wait(600)
     const user = usersService.findByEmail(email)

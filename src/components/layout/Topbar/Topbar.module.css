@@ -96,27 +96,8 @@
   color: var(--color-primary);
 }
 
-.user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-left: var(--space-sm);
-}
-
-.userInfo {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.25;
-  font-size: var(--text-sm);
-}
-
-.userInfo span {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-}
-
 @media (max-width: 960px) {
-  .userInfo {
+  .registerButton {
     display: none;
   }
 
