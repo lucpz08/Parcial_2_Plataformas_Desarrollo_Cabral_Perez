@@ -14,6 +14,7 @@ import { RequireAuth } from '@/components/auth/RequireAuth'
 import { AuthLayout } from '@/components/layout/AuthLayout/AuthLayout'
 import { AppLayout } from '@/components/layout/AppLayout/AppLayout'
 import { ROLES } from '@/data/constants'
+import { AlbumPage } from '@/pages/album/AlbumPage/AlbumPage'
 import { LoginPage } from '@/pages/auth/LoginPage/LoginPage'
 import { RegisterPage } from '@/pages/auth/RegisterPage/RegisterPage'
 import { PlaceholderPage } from '@/pages/PlaceholderPage'
@@ -49,16 +50,13 @@ export const router = createBrowserRouter([
       },
       { path: 'ui-kit', element: <UiKitPage /> },
       {
-        element: <RequireAuth roles={[ROLES.COLECCIONISTA]} />,
+        element: <RequireAuth />,
         children: [
           {
             path: 'publicar',
             element: <PlaceholderPage eyebrow="Mercado" title="Publicar carta" icon={Compass} />,
           },
-          {
-            path: 'album',
-            element: <PlaceholderPage eyebrow="Colección" title="Mi álbum" subtitle="Todas las cartas de tu colección" icon={Library} />,
-          },
+          { path: 'album', element: <AlbumPage /> },
           {
             path: 'album/catalogo',
             element: <PlaceholderPage eyebrow="Colección" title="Catálogo de cartas" icon={Library} />,

@@ -49,11 +49,15 @@ export const CONDITIONS = [
   { value: 'poor', label: 'Mala', short: 'PR' },
 ]
 
+export const CONDITION_LABELS = Object.fromEntries(CONDITIONS.map((condition) => [condition.value, condition.label]))
+
 export const LANGUAGES = [
   { value: 'ES', label: 'Español' },
   { value: 'EN', label: 'Inglés' },
   { value: 'JP', label: 'Japonés' },
 ]
+
+export const LANGUAGE_LABELS = Object.fromEntries(LANGUAGES.map((language) => [language.value, language.label]))
 
 export const CARD_TYPES = [
   'Fuego',

@@ -10,8 +10,6 @@ import { getNavigationFor } from './navigation'
 import styles from './Sidebar.module.css'
 
 function SidebarPromo({ user, onNavigate }) {
-  if (user?.role === 'admin') return null
-
   if (!user) {
     return (
       <div className={styles.promo}>

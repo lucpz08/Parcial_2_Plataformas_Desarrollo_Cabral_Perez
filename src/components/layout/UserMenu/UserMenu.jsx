@@ -9,14 +9,13 @@ import { resetDatabase } from '@/services/storage'
 import { cx } from '@/utils/cx'
 import styles from './UserMenu.module.css'
 
-const LINKS = {
-  coleccionista: [
-    { to: '/perfil', label: 'Mi perfil', icon: UserCircle },
-    { to: '/album', label: 'Mi álbum', icon: Library },
-    { to: '/perfil/editar', label: 'Editar perfil', icon: Settings },
-  ],
-  admin: [{ to: '/admin', label: 'Panel de administración', icon: LayoutDashboard }],
-}
+const COLLECTOR_LINKS = [
+  { to: '/perfil', label: 'Mi perfil', icon: UserCircle },
+  { to: '/album', label: 'Mi álbum', icon: Library },
+  { to: '/perfil/editar', label: 'Editar perfil', icon: Settings },
+]
+
+const ADMIN_LINKS = [{ to: '/admin', label: 'Panel de administración', icon: LayoutDashboard }]
 
 export function UserMenu() {
   const { user, logout } = useAuth()
@@ -86,7 +85,7 @@ export function UserMenu() {
           </div>
 
           <div className={styles.section}>
-            {LINKS[user.role].map(({ to, label, icon: Icon }) => (
+            {[...(user.role === 'admin' ? ADMIN_LINKS : []), ...COLLECTOR_LINKS].map(({ to, label, icon: Icon }) => (
               <Link key={to} to={to} className={styles.item} role="menuitem" onClick={() => setOpen(false)}>
                 <Icon size={18} />
                 {label}

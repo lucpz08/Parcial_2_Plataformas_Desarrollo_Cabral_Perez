@@ -17,7 +17,7 @@ export const NAVIGATION = [
   },
   {
     title: 'Mi colección',
-    roles: [ROLES.COLECCIONISTA],
+    requiresAuth: true,
     items: [
       { to: '/album', label: 'Mi álbum', icon: Library },
       { to: '/chats', label: 'Chats', icon: MessageCircle, badge: 'unreadMessages' },
@@ -37,5 +37,9 @@ export const NAVIGATION = [
 ]
 
 export function getNavigationFor(user) {
-  return NAVIGATION.filter((group) => !group.roles || (user && group.roles.includes(user.role)))
+  return NAVIGATION.filter((group) => {
+    if (group.roles) return Boolean(user) && group.roles.includes(user.role)
+    if (group.requiresAuth) return Boolean(user)
+    return true
+  })
 }
