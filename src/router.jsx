@@ -3,7 +3,6 @@ import {
   BookOpen,
   LayoutDashboard,
   ShieldCheck,
-  UserCircle,
   Users,
 } from 'lucide-react'
 import { HomeRedirect } from '@/components/auth/HomeRedirect'
@@ -20,6 +19,8 @@ import { LoginPage } from '@/pages/auth/LoginPage/LoginPage'
 import { RegisterPage } from '@/pages/auth/RegisterPage/RegisterPage'
 import { PlaceholderPage } from '@/pages/PlaceholderPage'
 import { PublishPage } from '@/pages/publish/PublishPage/PublishPage'
+import { EditProfilePage } from '@/pages/profile/EditProfilePage/EditProfilePage'
+import { ProfilePage } from '@/pages/profile/ProfilePage/ProfilePage'
 import { NotFoundPage, RouteErrorPage } from '@/pages/NotFoundPage/NotFoundPage'
 import { UiKitPage } from '@/pages/UiKitPage/UiKitPage'
 
@@ -40,10 +41,7 @@ export const router = createBrowserRouter([
       { index: true, element: <HomeRedirect /> },
       { path: 'explorar', element: <ExplorePage /> },
       { path: 'explorar/:listingId', element: <ListingDetailPage /> },
-      {
-        path: 'usuarios/:userId',
-        element: <PlaceholderPage eyebrow="Comunidad" title="Perfil público" icon={UserCircle} />,
-      },
+      { path: 'usuarios/:userId', element: <ProfilePage /> },
       { path: 'ui-kit', element: <UiKitPage /> },
       {
         element: <RequireAuth />,
@@ -52,14 +50,8 @@ export const router = createBrowserRouter([
           { path: 'album', element: <AlbumPage /> },
           { path: 'album/catalogo', element: <CatalogPage /> },
           { path: 'chats/:conversationId?', element: <ChatsPage /> },
-          {
-            path: 'perfil',
-            element: <PlaceholderPage eyebrow="Cuenta" title="Mi perfil" icon={UserCircle} />,
-          },
-          {
-            path: 'perfil/editar',
-            element: <PlaceholderPage eyebrow="Cuenta" title="Editar perfil" icon={UserCircle} />,
-          },
+          { path: 'perfil', element: <ProfilePage /> },
+          { path: 'perfil/editar', element: <EditProfilePage /> },
         ],
       },
       {
