@@ -15,6 +15,10 @@ const dateFormatter = new Intl.DateTimeFormat('es-AR', {
   year: 'numeric',
 })
 
+const timeFormatter = new Intl.DateTimeFormat('es-AR', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+
+const dayFormatter = new Intl.DateTimeFormat('es-AR', { weekday: 'long', day: 'numeric', month: 'long' })
+
 const relativeFormatter = new Intl.RelativeTimeFormat('es', { numeric: 'auto' })
 
 const RELATIVE_UNITS = [
@@ -49,4 +53,28 @@ export function formatRelative(iso) {
 
 export function pluralize(count, singular, plural = `${singular}s`) {
   return `${count} ${count === 1 ? singular : plural}`
+}
+
+export function formatTime(iso) {
+  return timeFormatter.format(new Date(iso))
+}
+
+function startOfDay(date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime()
+}
+
+export function formatDay(iso) {
+  const days = Math.round((startOfDay(new Date()) - startOfDay(new Date(iso))) / 86400000)
+  if (days === 0) return 'Hoy'
+  if (days === 1) return 'Ayer'
+  const label = dayFormatter.format(new Date(iso))
+  return label.charAt(0).toUpperCase() + label.slice(1)
+}
+
+export function formatShortRelative(iso) {
+  const days = Math.round((startOfDay(new Date()) - startOfDay(new Date(iso))) / 86400000)
+  if (days === 0) return formatTime(iso)
+  if (days === 1) return 'Ayer'
+  if (days < 7) return formatDay(iso).split(' ')[0].replace(',', '')
+  return new Intl.DateTimeFormat('es-AR', { day: '2-digit', month: '2-digit' }).format(new Date(iso))
 }

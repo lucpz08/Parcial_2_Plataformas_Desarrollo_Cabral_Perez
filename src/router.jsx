@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router'
 import {
   BookOpen,
   LayoutDashboard,
-  MessageCircle,
   ShieldCheck,
   UserCircle,
   Users,
@@ -14,6 +13,7 @@ import { AppLayout } from '@/components/layout/AppLayout/AppLayout'
 import { ROLES } from '@/data/constants'
 import { AlbumPage } from '@/pages/album/AlbumPage/AlbumPage'
 import { CatalogPage } from '@/pages/album/CatalogPage/CatalogPage'
+import { ChatsPage } from '@/pages/chats/ChatsPage/ChatsPage'
 import { ExplorePage } from '@/pages/explore/ExplorePage/ExplorePage'
 import { ListingDetailPage } from '@/pages/explore/ListingDetailPage/ListingDetailPage'
 import { LoginPage } from '@/pages/auth/LoginPage/LoginPage'
@@ -51,14 +51,7 @@ export const router = createBrowserRouter([
           { path: 'publicar', element: <PublishPage /> },
           { path: 'album', element: <AlbumPage /> },
           { path: 'album/catalogo', element: <CatalogPage /> },
-          {
-            path: 'chats',
-            element: <PlaceholderPage eyebrow="Mensajes" title="Chats" icon={MessageCircle} />,
-          },
-          {
-            path: 'chats/:conversationId',
-            element: <PlaceholderPage eyebrow="Mensajes" title="Conversación" icon={MessageCircle} />,
-          },
+          { path: 'chats/:conversationId?', element: <ChatsPage /> },
           {
             path: 'perfil',
             element: <PlaceholderPage eyebrow="Cuenta" title="Mi perfil" icon={UserCircle} />,
