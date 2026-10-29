@@ -1,0 +1,30 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text);
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+.text {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: -0.02em;
+}
+
+.accent {
+  margin-left: 4px;
+  color: var(--color-primary);
+}
+
+.light,
+.light .accent {
+  color: #ffffff;
+}
+
+.light .accent {
+  opacity: 0.75;
+}
