@@ -1,0 +1,107 @@
+function listing(id, userId, cardId, collectionItemId, intent, extra = {}) {
+  const createdAt = extra.createdAt ?? '2026-09-01T12:00:00.000Z'
+  return {
+    id,
+    userId,
+    cardId,
+    collectionItemId,
+    intent,
+    price: null,
+    currency: 'ARS',
+    description: '',
+    status: 'disponible',
+    province: null,
+    createdAt,
+    updatedAt: createdAt,
+    ...extra,
+  }
+}
+
+export const listings = [
+  listing('l1', 'u2', 'base1-2', 'ci1', 'vender', {
+    price: 450000,
+    province: 'Córdoba',
+    description: 'Blastoise verificado, near mint. Entrego en mano en Córdoba Capital o envío.',
+    createdAt: '2026-10-10T18:00:00.000Z',
+  }),
+  listing('l2', 'u2', 'base1-6', 'ci6', 'cambiar', {
+    province: 'Córdoba',
+    description: 'Lo cambio por cualquier holo de Jungle.',
+    createdAt: '2026-10-12T15:00:00.000Z',
+  }),
+  listing('l3', 'u3', 'base1-10', 'ci9', 'vender', {
+    price: 240000,
+    province: 'Buenos Aires',
+    status: 'reservado',
+    description: 'Mewtwo excelente estado. Ideal para completar el Base Set.',
+    createdAt: '2026-10-05T12:00:00.000Z',
+    updatedAt: '2026-10-21T16:00:00.000Z',
+  }),
+  listing('l4', 'u3', 'base1-4', null, 'busco', {
+    price: 1200000,
+    province: 'Buenos Aires',
+    description: 'Busco Charizard Base Set en estado excelente o mejor. Pago hasta el precio indicado.',
+    createdAt: '2026-10-18T20:00:00.000Z',
+  }),
+  listing('l5', 'u4', 'base1-4', 'ci11', 'vender', {
+    price: 1400000,
+    province: 'Santa Fe',
+    description: 'Charizard Base Set verificado. Solo entrega en mano en Rosario.',
+    createdAt: '2026-10-19T21:30:00.000Z',
+  }),
+  listing('l6', 'u4', 'base3-4', 'ci14', 'cambiar', {
+    province: 'Santa Fe',
+    description: 'Cambio Dragonite por Gengar o Articuno de Fossil.',
+    createdAt: '2026-10-02T14:00:00.000Z',
+  }),
+  listing('l7', 'u5', 'swsh7-215', 'ci15', 'vender', {
+    price: 1950000,
+    province: 'Mendoza',
+    description: 'Umbreon VMAX alt art japonesa, mint. Sale con sleeve y toploader.',
+    createdAt: '2026-10-24T11:00:00.000Z',
+  }),
+  listing('l8', 'u5', 'base2-3', null, 'busco', {
+    price: 110000,
+    province: 'Mendoza',
+    description: 'Busco Flareon de Jungle para completar las eeveelutions.',
+    createdAt: '2026-10-26T09:00:00.000Z',
+  }),
+  listing('l9', 'u6', 'base1-8', 'ci19', 'vender', {
+    price: 85000,
+    province: 'CABA',
+    status: 'completado',
+    description: 'Machamp holo, excelente.',
+    createdAt: '2026-09-10T12:00:00.000Z',
+    updatedAt: '2026-09-25T18:00:00.000Z',
+  }),
+  listing('l10', 'u6', 'base2-4', 'ci22', 'vender', {
+    price: 120000,
+    province: 'CABA',
+    description: 'Jolteon near mint. Envíos por correo a todo el país.',
+    createdAt: '2026-10-14T17:00:00.000Z',
+  }),
+  listing('l11', 'u6', 'base1-3', 'ci18', 'vender', {
+    price: 140000,
+    province: 'CABA',
+    status: 'completado',
+    description: 'Chansey holo, buen estado.',
+    createdAt: '2026-09-08T12:00:00.000Z',
+    updatedAt: '2026-09-20T15:00:00.000Z',
+  }),
+  listing('l12', 'u2', 'base2-11', 'ci5', 'vender', {
+    price: 130000,
+    province: 'Córdoba',
+    status: 'cancelado',
+    description: 'Snorlax holo de Jungle.',
+    createdAt: '2026-09-16T12:00:00.000Z',
+    updatedAt: '2026-09-30T12:00:00.000Z',
+  }),
+  listing('l13', 'u7', 'base3-15', 'ci23', 'vender', {
+    price: 400000,
+    province: 'Tucumán',
+    status: 'cancelado',
+    description: 'Zapdos Fossil primera edición.',
+    createdAt: '2026-09-13T12:00:00.000Z',
+    updatedAt: '2026-09-14T12:00:00.000Z',
+  }),
+]

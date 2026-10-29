@@ -1,0 +1,34 @@
+export const conversations = [
+  {
+    id: 'cv1',
+    participants: ['u2', 'u3'],
+    listingId: 'l3',
+    claimId: 'cl1',
+    lastMessageAt: '2026-10-27T21:15:00.000Z',
+    createdAt: '2026-10-21T16:00:00.000Z',
+  },
+  {
+    id: 'cv2',
+    participants: ['u4', 'u6'],
+    listingId: 'l9',
+    claimId: 'cl2',
+    lastMessageAt: '2026-09-25T18:00:00.000Z',
+    createdAt: '2026-09-18T12:00:00.000Z',
+  },
+  {
+    id: 'cv3',
+    participants: ['u2', 'u6'],
+    listingId: null,
+    claimId: null,
+    lastMessageAt: '2026-10-26T14:40:00.000Z',
+    createdAt: '2026-10-26T14:00:00.000Z',
+  },
+  {
+    id: 'cv4',
+    participants: ['u2', 'u4'],
+    listingId: 'l5',
+    claimId: null,
+    lastMessageAt: '2026-10-28T10:05:00.000Z',
+    createdAt: '2026-10-28T09:50:00.000Z',
+  },
+]
