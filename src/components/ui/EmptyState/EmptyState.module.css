@@ -1,0 +1,35 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-2xl) var(--space-lg);
+  text-align: center;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  animation: fade-in var(--duration-normal);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: var(--space-sm);
+  border-radius: 50%;
+  background: var(--color-primary-muted);
+  color: var(--color-primary);
+}
+
+.title {
+  font-size: var(--text-lg);
+}
+
+.description {
+  max-width: 380px;
+  color: var(--color-text-muted);
+}
+
+.action {
+  margin-top: var(--space-md);
+}

@@ -1,0 +1,117 @@
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  text-align: left;
+  transition:
+    border-color var(--duration-normal),
+    box-shadow var(--duration-normal);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-border));
+  box-shadow: var(--shadow-floating);
+}
+
+.selected,
+.selected:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.frame {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --glare-x: 50%;
+  --glare-y: 50%;
+  position: relative;
+  aspect-ratio: 63 / 88;
+  border-radius: 10px;
+  overflow: hidden;
+  transform: perspective(700px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.image,
+.fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: var(--space-md);
+  background: var(--gradient-card-back);
+  color: #ffffff;
+  text-align: center;
+}
+
+.fallbackName {
+  font-weight: var(--weight-bold);
+}
+
+.fallbackSet {
+  font-size: var(--text-xs);
+  opacity: 0.75;
+}
+
+.glare {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255, 255, 255, 0.35), transparent 55%);
+  opacity: 0;
+  mix-blend-mode: overlay;
+  transition: opacity var(--duration-normal);
+  pointer-events: none;
+}
+
+.frame:hover .glare {
+  opacity: 1;
+}
+
+.badges {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.badges > * {
+  background: var(--color-surface);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}

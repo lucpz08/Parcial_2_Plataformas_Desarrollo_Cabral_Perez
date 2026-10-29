@@ -1,0 +1,35 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.icon,
+.iconDanger {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: var(--space-xs);
+  border-radius: 50%;
+}
+
+.icon {
+  background: var(--color-primary-muted);
+  color: var(--color-primary);
+}
+
+.iconDanger {
+  background: var(--color-danger-muted);
+  color: var(--color-danger);
+}
+
+.title {
+  font-size: var(--text-lg);
+}
+
+.message {
+  color: var(--color-text-muted);
+}
