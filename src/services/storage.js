@@ -1,7 +1,7 @@
 import { seed } from '@/data/seed'
 
 const STORAGE_KEY = 'riolup-tcg:db'
-const DB_VERSION = 3
+const DB_VERSION = 4
 
 const listeners = new Set()
 

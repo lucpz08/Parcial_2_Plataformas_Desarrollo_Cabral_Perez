@@ -1,0 +1,31 @@
+export const reports = [
+  {
+    id: 'rp1',
+    listingId: 'l10',
+    reporterId: 'u3',
+    reason: 'misleading',
+    details: 'La foto de la publicación no coincide con el estado que dice. Se ve un doblez en la esquina.',
+    status: 'pending',
+    createdAt: '2026-10-26T15:20:00.000Z',
+  },
+  {
+    id: 'rp2',
+    listingId: 'l10',
+    reporterId: 'u2',
+    reason: 'price',
+    details: '',
+    status: 'pending',
+    createdAt: '2026-10-27T11:05:00.000Z',
+  },
+  {
+    id: 'rp3',
+    listingId: 'l6',
+    reporterId: 'u5',
+    reason: 'spam',
+    details: 'Publicó lo mismo varias veces en grupos y acá.',
+    status: 'dismissed',
+    createdAt: '2026-10-10T09:00:00.000Z',
+    resolvedAt: '2026-10-11T10:00:00.000Z',
+    resolvedBy: 'u1',
+  },
+]

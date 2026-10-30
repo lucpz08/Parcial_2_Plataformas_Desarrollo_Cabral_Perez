@@ -30,7 +30,7 @@ export const NAVIGATION = [
     items: [
       { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true },
       { to: '/admin/usuarios', label: 'Usuarios', icon: Users },
-      { to: '/admin/moderacion', label: 'Moderación', icon: ShieldCheck },
+      { to: '/admin/moderacion', label: 'Moderación', icon: ShieldCheck, badge: 'moderationQueue' },
       { to: '/admin/catalogo', label: 'Catálogo', icon: BookOpen },
     ],
   },

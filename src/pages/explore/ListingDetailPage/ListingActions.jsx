@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
-import { CheckCircle2, LogIn, MessageCircle, Pencil, Trash2, Unlock, XCircle } from 'lucide-react'
+import { CheckCircle2, Flag, LogIn, MessageCircle, Pencil, Trash2, Unlock, XCircle } from 'lucide-react'
 import { ReviewModal } from '@/components/reviews/ReviewModal/ReviewModal'
 import { ReviewPrompt } from '@/components/reviews/ReviewPrompt/ReviewPrompt'
 import { Alert, Avatar, Button, ConfirmDialog, StarRating } from '@/components/ui'
@@ -9,8 +9,10 @@ import { chatsService } from '@/services/chats'
 import { claimsService } from '@/services/claims'
 import { feedbackService } from '@/services/feedback'
 import { listingsService } from '@/services/listings'
+import { moderationService } from '@/services/moderation'
 import { formatDate, formatRelative } from '@/utils/format'
 import { CLAIM_COPY } from './claimCopy'
+import { ReportModal } from './ReportModal'
 import styles from './ListingDetailPage.module.css'
 
 export function ListingActions({ listing, activeClaim, claimant, lastClaim, role, user }) {
@@ -19,6 +21,7 @@ export function ListingActions({ listing, activeClaim, claimant, lastClaim, role
   const toast = useToast()
   const [pending, setPending] = useState(null)
   const [reviewOpen, setReviewOpen] = useState(false)
+  const [reportOpen, setReportOpen] = useState(false)
   const copy = CLAIM_COPY[listing.intent]
   const sellerName = listing.seller.displayName
 
@@ -86,6 +89,13 @@ export function ListingActions({ listing, activeClaim, claimant, lastClaim, role
           </Alert>
           <ReviewPrompt context={reviewContext} onReview={() => setReviewOpen(true)} />
         </>
+      )
+    }
+    if (listing.moderationReason) {
+      return (
+        <Alert tone="danger" title="Dada de baja por moderación">
+          {role === 'owner' ? `Motivo: ${listing.moderationReason}` : 'Esta publicación infringía las normas de la comunidad.'}
+        </Alert>
       )
     }
     return (
@@ -203,10 +213,25 @@ export function ListingActions({ listing, activeClaim, claimant, lastClaim, role
   const renderers = { guest: renderGuest, owner: renderOwner, claimant: renderClaimant, visitor: renderVisitor }
   const dialog = pending ? dialogs[pending] : null
   const reviewContext = user && lastClaim ? feedbackService.getForClaim(lastClaim.id, user.id) : null
+  const canReport = Boolean(user) && role !== 'owner' && !isClosed
+  const alreadyReported = canReport && moderationService.hasPendingReport(listing.id, user.id)
 
   return (
     <section className={styles.actions} aria-label="Acciones">
       {isClosed ? renderClosed() : renderers[role]()}
+      {canReport &&
+        (alreadyReported ? (
+          <span className={styles.reportLink}>
+            <Flag size={13} />
+            Ya denunciaste esta publicación
+          </span>
+        ) : (
+          <button type="button" className={styles.reportLink} onClick={() => setReportOpen(true)}>
+            <Flag size={13} />
+            Denunciar publicación
+          </button>
+        ))}
+      {reportOpen && <ReportModal listing={listing} userId={user.id} onClose={() => setReportOpen(false)} />}
       <ConfirmDialog open={Boolean(dialog)} onClose={() => setPending(null)} {...dialog} />
       <ReviewModal
         context={reviewOpen && reviewContext && !reviewContext.myReview ? reviewContext : null}

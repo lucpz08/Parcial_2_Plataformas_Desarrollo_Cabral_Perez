@@ -64,6 +64,11 @@ export function CollectionItemModal({ item, onClose, onPublish, onDelete, onRequ
           <div className={styles.detailVerification}>
             <VerificationBadge status={item.verification} />
             <p>{VERIFICATION_MESSAGES[item.verification]}</p>
+            {item.verification === 'rejected' && item.verificationNote && (
+              <p>
+                <strong>Motivo:</strong> {item.verificationNote}
+              </p>
+            )}
             {canRequestVerification && (
               <Button variant="secondary" size="sm" icon={ShieldCheck} onClick={() => onRequestVerification(item)}>
                 Solicitar verificación

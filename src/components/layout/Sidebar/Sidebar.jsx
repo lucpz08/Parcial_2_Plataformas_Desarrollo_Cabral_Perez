@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router'
 import { Plus, UserPlus } from 'lucide-react'
 import { Button } from '@/components/ui'
+import { ROLES } from '@/data/constants'
 import { useAuth } from '@/hooks/useAuth'
 import { useDatabase } from '@/hooks/useDatabase'
 import { chatsService } from '@/services/chats'
+import { moderationService } from '@/services/moderation'
 import { cx } from '@/utils/cx'
 import { Logo } from '../Logo/Logo'
 import { getNavigationFor } from './navigation'
@@ -33,12 +35,18 @@ function SidebarPromo({ user, onNavigate }) {
   )
 }
 
+function getModerationQueueSize() {
+  const counts = moderationService.getCounts()
+  return counts.verifications + counts.reports
+}
+
 export function Sidebar({ open, onNavigate }) {
   const { user } = useAuth()
   useDatabase()
 
   const badges = {
     unreadMessages: user ? chatsService.getUnreadCount(user.id) : 0,
+    moderationQueue: user?.role === ROLES.ADMIN ? getModerationQueueSize() : 0,
   }
 
   return (

@@ -6,6 +6,7 @@ import { claims } from './claims'
 import { conversations } from './conversations'
 import { messages } from './messages'
 import { reviews } from './reviews'
+import { reports } from './reports'
 
 export const seed = {
   users,
@@ -16,4 +17,5 @@ export const seed = {
   conversations,
   messages,
   reviews,
+  reports,
 }

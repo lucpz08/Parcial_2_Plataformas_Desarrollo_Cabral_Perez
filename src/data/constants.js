@@ -124,3 +124,15 @@ export const REVIEW_TAGS = [
   'Embalaje cuidado',
   'Puntual en el encuentro',
 ]
+
+export const REPORT_REASONS = [
+  { value: 'fake', label: 'Carta falsa o réplica' },
+  { value: 'misleading', label: 'Fotos o descripción engañosa' },
+  { value: 'price', label: 'Precio abusivo' },
+  { value: 'spam', label: 'Spam o publicación duplicada' },
+  { value: 'other', label: 'Otro motivo' },
+]
+
+export const REPORT_REASON_LABELS = Object.fromEntries(REPORT_REASONS.map((reason) => [reason.value, reason.label]))
+
+export const MODERATION_REASON_MIN_LENGTH = 10

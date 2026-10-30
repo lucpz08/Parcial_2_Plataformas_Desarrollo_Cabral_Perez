@@ -1,13 +1,13 @@
 import { createBrowserRouter } from 'react-router'
 import {
   BookOpen,
-  ShieldCheck,
 } from 'lucide-react'
 import { HomeRedirect } from '@/components/auth/HomeRedirect'
 import { RequireAuth } from '@/components/auth/RequireAuth'
 import { AuthLayout } from '@/components/layout/AuthLayout/AuthLayout'
 import { AppLayout } from '@/components/layout/AppLayout/AppLayout'
 import { ROLES } from '@/data/constants'
+import { ModerationPage } from '@/pages/admin/ModerationPage/ModerationPage'
 import { AdminUsersPage } from '@/pages/admin/AdminUsersPage/AdminUsersPage'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage/AdminDashboardPage'
 import { AlbumPage } from '@/pages/album/AlbumPage/AlbumPage'
@@ -60,10 +60,7 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <AdminDashboardPage /> },
           { path: 'usuarios', element: <AdminUsersPage /> },
-          {
-            path: 'moderacion',
-            element: <PlaceholderPage eyebrow="Administración" title="Moderación" icon={ShieldCheck} />,
-          },
+          { path: 'moderacion', element: <ModerationPage /> },
           {
             path: 'catalogo',
             element: <PlaceholderPage eyebrow="Administración" title="Catálogo" icon={BookOpen} />,

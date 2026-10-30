@@ -199,6 +199,10 @@ export const adminUsersService = {
     setTable('messages', getTable('messages').filter((message) => !conversationIds.includes(message.conversationId)))
     setTable('conversations', getTable('conversations').filter((conversation) => !conversationIds.includes(conversation.id)))
     setTable('collectionItems', getTable('collectionItems').filter((item) => item.userId !== id))
+    setTable(
+      'reports',
+      getTable('reports').filter((report) => report.reporterId !== id && !listingIds.includes(report.listingId)),
+    )
     usersService.remove(id)
   },
 }

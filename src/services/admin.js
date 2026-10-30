@@ -2,6 +2,7 @@ import { cardsService } from './cards'
 import { claimsService } from './claims'
 import { collectionService } from './collection'
 import { listingsService } from './listings'
+import { moderationService } from './moderation'
 import { reviewsService } from './reviews'
 import { usersService } from './users'
 import { INTENTS } from '@/data/constants'
@@ -133,6 +134,7 @@ export const adminService = {
       attention: {
         pendingVerifications: collectionService.where((item) => item.verification === 'pending').length,
         suspendedUsers: users.filter((user) => user.status === 'suspendido').length,
+        pendingReports: moderationService.getCounts().reports,
         staleReservations: activeClaims.filter(
           (claim) => now.getTime() - new Date(claim.createdAt).getTime() > STALE_RESERVATION_DAYS * DAY_MS,
         ).length,

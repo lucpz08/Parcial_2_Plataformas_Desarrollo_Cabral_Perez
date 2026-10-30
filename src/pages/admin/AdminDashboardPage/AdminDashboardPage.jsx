@@ -3,6 +3,7 @@ import {
   BadgeCheck,
   ChevronRight,
   Clock,
+  Flag,
   Handshake,
   Layers,
   MessageSquareQuote,
@@ -125,7 +126,15 @@ export function AdminDashboardPage() {
               count={attention.pendingVerifications}
               label={attention.pendingVerifications === 1 ? 'verificación pendiente' : 'verificaciones pendientes'}
               description="Cartas esperando revisión de fotos"
-              to="/admin/moderacion"
+              to="/admin/moderacion?tab=verificaciones"
+            />
+            <AttentionItem
+              icon={Flag}
+              tone="danger"
+              count={attention.pendingReports}
+              label={attention.pendingReports === 1 ? 'publicación denunciada' : 'publicaciones denunciadas'}
+              description="Reportes de la comunidad sin resolver"
+              to="/admin/moderacion?tab=denuncias"
             />
             <AttentionItem
               icon={Clock}
@@ -133,7 +142,7 @@ export function AdminDashboardPage() {
               count={attention.staleReservations}
               label={attention.staleReservations === 1 ? 'reserva demorada' : 'reservas demoradas'}
               description="Activas hace más de 7 días"
-              to="/admin/moderacion"
+              to="/admin/moderacion?tab=reservas"
             />
             <AttentionItem
               icon={UserX}
