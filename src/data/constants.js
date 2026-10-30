@@ -136,3 +136,5 @@ export const REPORT_REASONS = [
 export const REPORT_REASON_LABELS = Object.fromEntries(REPORT_REASONS.map((reason) => [reason.value, reason.label]))
 
 export const MODERATION_REASON_MIN_LENGTH = 10
+
+export const CARD_RARITIES = ['Común', 'Poco común', 'Rara', 'Holo Rara', 'Ultra Rara', 'Secreta', 'Ilustración Especial']

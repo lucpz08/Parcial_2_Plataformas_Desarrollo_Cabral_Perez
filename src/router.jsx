@@ -1,12 +1,10 @@
 import { createBrowserRouter } from 'react-router'
-import {
-  BookOpen,
-} from 'lucide-react'
 import { HomeRedirect } from '@/components/auth/HomeRedirect'
 import { RequireAuth } from '@/components/auth/RequireAuth'
 import { AuthLayout } from '@/components/layout/AuthLayout/AuthLayout'
 import { AppLayout } from '@/components/layout/AppLayout/AppLayout'
 import { ROLES } from '@/data/constants'
+import { CatalogAdminPage } from '@/pages/admin/CatalogAdminPage/CatalogAdminPage'
 import { ModerationPage } from '@/pages/admin/ModerationPage/ModerationPage'
 import { AdminUsersPage } from '@/pages/admin/AdminUsersPage/AdminUsersPage'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage/AdminDashboardPage'
@@ -17,7 +15,6 @@ import { ExplorePage } from '@/pages/explore/ExplorePage/ExplorePage'
 import { ListingDetailPage } from '@/pages/explore/ListingDetailPage/ListingDetailPage'
 import { LoginPage } from '@/pages/auth/LoginPage/LoginPage'
 import { RegisterPage } from '@/pages/auth/RegisterPage/RegisterPage'
-import { PlaceholderPage } from '@/pages/PlaceholderPage'
 import { PublishPage } from '@/pages/publish/PublishPage/PublishPage'
 import { EditProfilePage } from '@/pages/profile/EditProfilePage/EditProfilePage'
 import { ProfilePage } from '@/pages/profile/ProfilePage/ProfilePage'
@@ -61,10 +58,7 @@ export const router = createBrowserRouter([
           { index: true, element: <AdminDashboardPage /> },
           { path: 'usuarios', element: <AdminUsersPage /> },
           { path: 'moderacion', element: <ModerationPage /> },
-          {
-            path: 'catalogo',
-            element: <PlaceholderPage eyebrow="Administración" title="Catálogo" icon={BookOpen} />,
-          },
+          { path: 'catalogo', element: <CatalogAdminPage /> },
         ],
       },
       { path: '*', element: <NotFoundPage /> },
