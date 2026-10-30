@@ -10,7 +10,7 @@ export function AuthProvider({ children }) {
 
   const user = useMemo(() => {
     const found = db.users.find((candidate) => candidate.id === userId)
-    return found ? usersService.toPublic(found) : null
+    return found?.status === 'activo' ? usersService.toPublic(found) : null
   }, [db, userId])
 
   const login = useCallback(async (email, password, remember) => {

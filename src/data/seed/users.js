@@ -96,5 +96,8 @@ export const users = [
     bio: 'Coleccionista de Fossil.',
     avatarUrl: null,
     createdAt: '2026-09-11T16:40:00.000Z',
+    suspendedAt: '2026-09-14T12:00:00.000Z',
+    suspendedBy: 'u1',
+    suspensionReason: 'Publicó un Zapdos primera edición falso. Varios usuarios lo reportaron con fotos.',
   },
 ]
