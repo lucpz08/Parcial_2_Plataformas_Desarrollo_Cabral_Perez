@@ -10,7 +10,7 @@ export function AlbumStats({ stats }) {
         icon={Wallet}
         label="Valor estimado"
         value={formatPrice(stats.estimatedValue)}
-        hint="Según precios de referencia"
+        hint="Según estado y verificación"
         highlight
       />
       <StatCard

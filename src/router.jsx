@@ -10,11 +10,13 @@ import { AdminUsersPage } from '@/pages/admin/AdminUsersPage/AdminUsersPage'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage/AdminDashboardPage'
 import { AlbumPage } from '@/pages/album/AlbumPage/AlbumPage'
 import { CatalogPage } from '@/pages/album/CatalogPage/CatalogPage'
+import { ValuationPage } from '@/pages/album/ValuationPage/ValuationPage'
 import { ChatsPage } from '@/pages/chats/ChatsPage/ChatsPage'
 import { ExplorePage } from '@/pages/explore/ExplorePage/ExplorePage'
 import { ListingDetailPage } from '@/pages/explore/ListingDetailPage/ListingDetailPage'
 import { LoginPage } from '@/pages/auth/LoginPage/LoginPage'
 import { RegisterPage } from '@/pages/auth/RegisterPage/RegisterPage'
+import { MatchesPage } from '@/pages/matches/MatchesPage/MatchesPage'
 import { PublishPage } from '@/pages/publish/PublishPage/PublishPage'
 import { EditProfilePage } from '@/pages/profile/EditProfilePage/EditProfilePage'
 import { ProfilePage } from '@/pages/profile/ProfilePage/ProfilePage'
@@ -46,6 +48,8 @@ export const router = createBrowserRouter([
           { path: 'publicar', element: <PublishPage /> },
           { path: 'album', element: <AlbumPage /> },
           { path: 'album/catalogo', element: <CatalogPage /> },
+          { path: 'album/valuacion', element: <ValuationPage /> },
+          { path: 'coincidencias', element: <MatchesPage /> },
           { path: 'chats/:conversationId?', element: <ChatsPage /> },
           { path: 'perfil', element: <ProfilePage /> },
           { path: 'perfil/editar', element: <EditProfilePage /> },

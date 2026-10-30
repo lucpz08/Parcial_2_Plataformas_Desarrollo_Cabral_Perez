@@ -5,6 +5,7 @@ import {
   Library,
   MessageCircle,
   ShieldCheck,
+  Sparkles,
   UserCircle,
   Users,
 } from 'lucide-react'
@@ -20,6 +21,7 @@ export const NAVIGATION = [
     requiresAuth: true,
     items: [
       { to: '/album', label: 'Mi álbum', icon: Library },
+      { to: '/coincidencias', label: 'Coincidencias', icon: Sparkles, badge: 'matches' },
       { to: '/chats', label: 'Chats', icon: MessageCircle, badge: 'unreadMessages' },
       { to: '/perfil', label: 'Mi perfil', icon: UserCircle },
     ],

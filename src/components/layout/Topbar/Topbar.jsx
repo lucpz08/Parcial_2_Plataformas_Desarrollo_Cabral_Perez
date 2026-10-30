@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { Bell, LogIn, Menu, Search, UserPlus } from 'lucide-react'
+import { LogIn, Menu, Search, UserPlus } from 'lucide-react'
 import { Button } from '@/components/ui'
 import { useAuth } from '@/hooks/useAuth'
+import { NotificationsMenu } from '../NotificationsMenu/NotificationsMenu'
 import { UserMenu } from '../UserMenu/UserMenu'
 import styles from './Topbar.module.css'
 
@@ -38,9 +39,7 @@ export function Topbar({ onMenuClick }) {
       <div className={styles.actions}>
         {user ? (
           <>
-            <button type="button" className={styles.iconButton} aria-label="Notificaciones">
-              <Bell size={20} />
-            </button>
+            <NotificationsMenu />
             <UserMenu />
           </>
         ) : (

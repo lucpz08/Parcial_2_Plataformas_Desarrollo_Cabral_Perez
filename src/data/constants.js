@@ -138,3 +138,14 @@ export const REPORT_REASON_LABELS = Object.fromEntries(REPORT_REASONS.map((reaso
 export const MODERATION_REASON_MIN_LENGTH = 10
 
 export const CARD_RARITIES = ['Común', 'Poco común', 'Rara', 'Holo Rara', 'Ultra Rara', 'Secreta', 'Ilustración Especial']
+
+export const CONDITION_VALUE_FACTORS = {
+  mint: 1.15,
+  near_mint: 1,
+  excellent: 0.8,
+  good: 0.6,
+  played: 0.4,
+  poor: 0.2,
+}
+
+export const VERIFIED_VALUE_BONUS = 0.05

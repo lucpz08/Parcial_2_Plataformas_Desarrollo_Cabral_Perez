@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { Library, Plus, SearchX } from 'lucide-react'
+import { Library, Plus, SearchX, Wallet } from 'lucide-react'
 import { PageHeader } from '@/components/layout/PageHeader/PageHeader'
 import { Button, ConfirmDialog, EmptyState } from '@/components/ui'
 import { useAuth } from '@/hooks/useAuth'
@@ -9,6 +9,7 @@ import { usePersistentState } from '@/hooks/usePersistentState'
 import { useToast } from '@/hooks/useToast'
 import { cardsService } from '@/services/cards'
 import { collectionService } from '@/services/collection'
+import { valuationService } from '@/services/valuation'
 import { pluralize } from '@/utils/format'
 import { AlbumStats } from './AlbumStats'
 import { AlbumToolbar } from './AlbumToolbar'
@@ -33,7 +34,7 @@ export function AlbumPage() {
   const [pendingDelete, setPendingDelete] = useState(null)
 
   const items = collectionService.getByUser(user.id)
-  const stats = collectionService.getStats(user.id)
+  const stats = { ...collectionService.getStats(user.id), estimatedValue: valuationService.getForUser(user.id).total }
   const sets = cardsService.getSets()
   const visibleItems = applyFilters(items, filters)
   const detailItem = items.find((item) => item.id === detailId) ?? null
@@ -98,9 +99,14 @@ export function AlbumPage() {
         title="Mi álbum"
         subtitle="Todas tus cartas en un solo lugar. Publicalas para vender o cambiar."
         actions={
-          <Button as={Link} to="/album/catalogo" icon={Plus}>
-            Agregar cartas
-          </Button>
+          <>
+            <Button as={Link} to="/album/valuacion" variant="outline" icon={Wallet}>
+              Valuación
+            </Button>
+            <Button as={Link} to="/album/catalogo" icon={Plus}>
+              Agregar cartas
+            </Button>
+          </>
         }
       />
 

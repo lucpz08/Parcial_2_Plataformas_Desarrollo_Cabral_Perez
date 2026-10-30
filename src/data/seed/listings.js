@@ -112,4 +112,16 @@ export const listings = [
     createdAt: '2026-10-15T13:00:00.000Z',
     updatedAt: '2026-10-24T19:30:00.000Z',
   }),
+  listing('l15', 'u2', 'swsh7-215', null, 'busco', {
+    price: 1800000,
+    province: 'Córdoba',
+    description: 'Busco Umbreon VMAX alternativo en near mint o mejor. Pago por transferencia.',
+    createdAt: '2026-10-27T12:00:00.000Z',
+  }),
+  listing('l16', 'u4', 'base1-15', null, 'busco', {
+    price: 400000,
+    province: 'Santa Fe',
+    description: 'Me falta el Venusaur para cerrar los tres iniciales del Base Set.',
+    createdAt: '2026-10-28T08:30:00.000Z',
+  }),
 ]

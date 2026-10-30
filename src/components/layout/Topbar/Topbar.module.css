@@ -78,24 +78,6 @@
   margin-left: auto;
 }
 
-.iconButton {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  background: var(--color-surface);
-  border: 1.5px solid var(--color-border);
-  border-radius: 50%;
-  color: var(--color-text-muted);
-  transition: color var(--duration-fast), border-color var(--duration-fast);
-}
-
-.iconButton:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
-
 @media (max-width: 960px) {
   .registerButton {
     display: none;

@@ -5,6 +5,7 @@ import { ROLES } from '@/data/constants'
 import { useAuth } from '@/hooks/useAuth'
 import { useDatabase } from '@/hooks/useDatabase'
 import { chatsService } from '@/services/chats'
+import { matchesService } from '@/services/matches'
 import { moderationService } from '@/services/moderation'
 import { cx } from '@/utils/cx'
 import { Logo } from '../Logo/Logo'
@@ -46,6 +47,7 @@ export function Sidebar({ open, onNavigate }) {
 
   const badges = {
     unreadMessages: user ? chatsService.getUnreadCount(user.id) : 0,
+    matches: matchesService.getCount(user?.id),
     moderationQueue: user?.role === ROLES.ADMIN ? getModerationQueueSize() : 0,
   }
 
